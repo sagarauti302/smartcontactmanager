@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/base::Layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title> </title>
+</head>
+<body>
+	<section>
+	
+		<div class="card mr-4 ml-4" th:if="${contact}">
+			<div class="card-body  text-center" >
+					
+			<img src="" class="viewconimg" th:src="@{'/img/'+${contact.image}}" alt="Contact Profile"   />
+					
+			<h3 class="mt-3"><span th:text="${contact.name}"> </span>  ( <span th:text="${contact.nickName}"></span> ) </h3>
+			
+			<div class="row ">
+				<div class="col-md-8 offset-md-2 m-auto">
+							<table class="table table-striped mt-2">
+					 	  <tbody>
+					    <tr>
+					      <th scope="col"><i class="fa fa-user fa-2x"></i></th>
+					      <td scope="col" th:text="${'SR_'+{contact.cId}}"></td>
+					      
+					    </tr>
+					
+				
+					    <tr>
+					      <th scope="row"><i class="fa fa-at fa-2x"></i> </th>
+					      <td th:text="${contact.email}"></td>
+					    </tr>
+					 
+					 
+					  <tr>
+					      <th scope="row"><i class="fa fa-phone fa-2x"></i> </th>
+					      <td th:text="${contact.phone}"></td>
+					    </tr>
+					 
+					 
+					  <tr>
+					      <th scope="row"><i class="fa fa-briefcase fa-2x"></i> </th>
+					      <td th:text="${contact.work}"></td>
+					    </tr>
+					 
+					 
+					 
+					  </tbody>
+					</table>
+					
+					<div class="discription">
+					
+					<th:block th:utext="${contact.description}"></th:block>
+					
+					</div>
+					
+					<div class="container mt-4">
+					<form th:action="@{'/user/get-update-form/'+${contact.cId}}" method="post">
+						      <button type="submit" class="btn btn-primary">
+						      	<i class="fa action fa-pencil fa-lg"></i>
+						      </button>
+						      </form>	
+				     &nbsp;
+						      <a  th:onclick=(|deleteContact(${contact.cId},0)|) class="btn btn-danger btn-lg">
+						      	<i class="fa action fa-trash fa-lg"></i>
+						      </a>
+					</div>
+		
+				</div>
+			</div>
+			
+				
+			</div>
+		</div>
+
+<div class="container text-center" th:unless="${contact}">
+	<h1 class="text-danger" >You Do Not See Other Person's contact....!</h1>
+				<img src="" th:src="@{'/img/serverError.gif'}" alt="Contact Profile"   />
+	
+	
+</div>
+
+	</section>
+</body>
+</html>

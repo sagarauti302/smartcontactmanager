@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/base::Layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title> </title>
+</head>
+<body>
+	<section>
+	
+
+         <div class="card mr-4 ml-4" th:if="${user}">
+			<div class="card-body  text-center" >
+					
+			<img src="" hight="200px" width="200px" class="viewconimg" th:src="@{'/img/'+${user.image}}" alt="User Profile"   />
+					
+			<h3 class="mt-3"><span th:text="${user.name}"> </span>  </h3>
+			
+			<div class="row ">
+				<div class="col-md-8 offset-md-2 m-auto">
+							<table class="table table-striped mt-2">
+					 	  <tbody>
+					    <tr>
+					      <th scope="col"><i class="fa fa-user fa-2x"></i></th>
+					      <td scope="col" th:text="${'SR_'+{user.Id}}"></td>
+					      
+					    </tr>
+					
+				
+					    <tr>
+					      <th scope="row"><i class="fa fa-at fa-2x"></i> </th>
+					      <td th:text="${user.email}"></td>
+					    </tr>
+					 
+					    
+					  
+					 
+					  <tr>
+					      <th scope="row"><i class="fa fa-briefcase fa-2x"></i> </th>
+					      <td th:text="${user.role}"></td>
+					    </tr>
+					 
+					 
+					 
+					  </tbody>
+					</table>
+					
+					<div class="discription">
+					
+					<th:block th:utext="${user.about}"></th:block>
+					
+					</div>
+					
+					<div class="container mt-4 ">
+					<form th:action="@{'/user/get-update-form/'+${user.Id}}" method="post">
+						      <button type="submit" class="btn btn-primary">
+						      	<i class="fa action fa-pencil fa-lg"></i>
+						      </button>
+						      </form>	
+				     &nbsp;
+					</div>
+		
+				</div>
+			</div>
+			
+				
+			</div>
+		</div>
+        
+
+	</section>
+</body>
+</html>

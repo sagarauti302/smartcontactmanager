@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/base::Layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title> </title>
+</head>
+<body>
+	<section>
+	<div class="col-md-10 offset-md-1">
+		<div class="card mr-4 ml-4" >
+			<div class="card-body">
+				<h2 class="text-center">Your Contact</h2>
+				 
+				 
+				 <div class="search">
+				 
+				 <input onkeyup="search()" type="text" placeholder="Search Contact Here..." class="form-control" id="search" />
+				 
+				 <div class="search-result ">
+				
+				 
+				  </div>
+				
+				 
+				  </div>
+				 
+				  
+				
+				
+				<div class="table-responsive mt-2">
+                       <table class="table">
+						  <thead>
+						    <tr>
+						      <th scope="col">#Id</th>
+						      <th scope="col">Name</th>
+						      <th scope="col">Email</th>
+						      <th scope="col">Phone</th>
+						      <th scope="col">Action</th>
+						      
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr th:each="con:${contact}">
+						      <td class="font-weight-bold" th:text="${'SR_'+con.cId}"></td>
+						      <td >
+						      <img src="" class="contactimg" th:src="@{'/img/'+${con.image}}" alt="Contact Profile" />
+						      &nbsp;
+						      <a  href="" th:href="@{'/user/contact/'+${con.cId}}">
+						      		 <span th:text="${con.name}"></span>
+						      </a>
+						     
+						      </td>
+						      <td > <a href=""  th:href="@{'/user/contact/'+${con.cId}}"><span th:text="${con.email}"></span></a></td>
+						      <td th:text="${con.phone}"></td>
+						      <td >
+						      
+						      <form th:action="@{'/user/get-update-form/'+${con.cId}}" method="post">
+						      <button type="submit" class="btn btn-primary">
+						      	<i class="fa action fa-pencil fa-lg"></i>
+						      </button>
+						      </form>		      
+						      
+						      <a th:onclick=(|deleteContact(${con.cId},${currentPage})|) class="btn btn-danger">
+						      	<i class="fa action fa-trash fa-lg"></i>
+						      </a>
+						      </td>
+						    </tr>
+						    
+						  </tbody>
+			</table>				
+				</div>				
+				
+				<nav aria-label="Page navigation example">
+				  <ul class="pagination">
+				    <li th:if="${currentPage!=0}" class="page-item"><a class="page-link" href="#" th:href="@{'/user/show-contacts/'+${currentPage-1}}">Previous</a></li>
+				    <li th:classappend="${currentPage==i? 'active' : ''}" th:each="i :${#numbers.sequence(0,totalPages)}" class="page-item"><a class="page-link" href="#" th:href="@{'/user/show-contacts/'+${i}}" ><span th:text="${i}"></span></a></li>
+				    <li th:if="${currentPage!=totalPages}" class="page-item"><a class="page-link" href="#" th:href="@{'/user/show-contacts/'+${currentPage+1}}">Next</a></li>
+				  </ul>
+				</nav> 
+				
+			</div>
+		</div>
+	</div>
+	
+	</section>
+</body>
+</html>

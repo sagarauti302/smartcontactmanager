@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="Layout(content)">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" th:href="@{/css/style.css}" href="" />
+    <title th:text="${title}">Hello, world!</title>
+    
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    
+  </head>
+  <body>
+  
+     <nav class="navbar navbar-expand-lg fixed-top  navbar-dark  bg-primary">
+      <a class="navbar-brand" th:href="@{/}" href="#">Smart Contact Manager</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon"></span>
+     </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto text-uppercase">
+      <li class="nav-item active">
+        <a class="nav-link" th:href="@{/}" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" href="#"> <span th:text="${user.name}"></span> </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/logout}"  href="#">Logout</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+</nav>
+       
+       
+                 
+
+<div class="sidebar mt-2" >
+<span class="cross" onclick="toggleContent()">&times</span>
+<a id="home" href="" th:href="@{/user/dashboard}" class="item"><i class="fa fa-home fa-lg"></i>Dashboard</a>
+<a id="profile" href="" th:href="@{/user/get_user_profile}" class="item"><i class="fa fa-user-circle fa-lg"></i> Profile</a>
+
+<a id="addCon" href="" th:href="@{/user/add-contact}" class="item"><i class="fa fa-user-plus fa-lg"></i> Add Contact</a>
+<a id="viewCon" href="" th:href="@{/user/show-contacts/0}" class="item"><i class="fa fa-address-book fa-lg"></i> View Contact</a>
+<a id="setting" href="" th:href="@{/user/open-setting}" class="item"><i class="fa fa-cog fa-lg"></i> Settings</a>
+<a id="logout" href="" th:href="@{/logout}" class="item"><i class="fa fa-sign-out fa-lg"></i> Logout</a>
+
+</div>
+
+<div class="con mt-5">
+
+
+
+
+<i onclick="toggleContent()" class="togglebtn fa fa-bars m-3 fa-lg" ></i>
+
+
+<div class="container " >
+	<div class="row">
+		<div class="col-md-8 text-center m-auto ">
+						<div th:if="${session.message}" th:classappend="${session.message.type}" class="alert " role="alert">
+					    <p class="text-center" th:text="${session.message.content}"></p>
+					    <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+					</div> 
+	</div>
+</div>
+</div>
+  
+      
+        
+        <div class="mt-3">
+        <section th:replace="${content}" >
+    
+     </section>
+        </div>
+     
+
+</div>
+  
+    
+	<script type="text/javascript" th:src="@{/js/script.js}"></script>
+	
+	
+	
+	
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
+	
+	
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ 
+ 
+ 
+  </body>
+  
+  
+</html>
